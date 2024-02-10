@@ -19,7 +19,10 @@ def get_timestamp():
     timestamp = time.strftime("%Y-%m-%d %X")
     return timestamp
 
-
+## main page
+@app.route("/")
+def index():
+    return "Service is running!"
 @app.route("/webhook", methods=["POST"])
 def webhook():
     try:
@@ -42,5 +45,5 @@ def webhook():
 
 if __name__ == "__main__":
     from waitress import serve
-
+    # test
     serve(app, host="0.0.0.0", port=80)

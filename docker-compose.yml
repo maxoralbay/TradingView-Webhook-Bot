@@ -4,6 +4,12 @@ services:
     tradingview-webhook-bot:
         build: .
         container_name: tradingview-webhook-bot
+        volumes:
+            - .:/usr/src/app
+        environment:
+            - FLASK_APP=main.py
+            - FLASK_ENV=production
+        command: /usr/local/bin/gunicorn --reload -w 8 -b 0.0.0.0:80 main:app
         ports:
-            - '80:80'
+            - "8080:80"
         restart: unless-stopped
